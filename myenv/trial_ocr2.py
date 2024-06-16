@@ -18,7 +18,7 @@ def main():
         image = load_image(image_file)
         st.image(image, caption='Uploaded Image', use_column_width=True)
         if st.button("Recognize Text"):
-            result_text = pytesseract.image_to_string(image)
+            result_text = pytesseract.image_to_string(image, lang='eng')
             st.write(result_text)
 
 if __name__ == "__main__":

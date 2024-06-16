@@ -3,23 +3,28 @@ from PIL import Image
 import pytesseract
 from shutil import which
 
-tesseract_path = which("pytesseract")
-st.write("Tesseract path:", tesseract_path)
-pytesseract.pytesseract.tesseract_cmd = tesseract_path
+def check_tesseract():
+    # Check if Tesseract is in the PATH
+    tesseract_path = subprocess.getoutput('which tesseract')
+    if tesseract_path:
+        return f"Tesseract is installed at: {tesseract_path}"
+    else:
+        return "Tesseract is not installed."
 
-def load_image(image_file):
-    return Image.open(image_file)
+def list_installed_packages():
+    # This will list all installed packages in the environment
+    installed_packages = subprocess.getoutput('dpkg -l')
+    return installed_packages
 
 def main():
-    st.title("OCR with Tesseract")
-    image_file = st.file_uploader("Upload Image", type=['png', 'jpeg', 'jpg'])
+    st.title('Tesseract OCR Checker')
+    if st.button('Check Tesseract Installation'):
+        result = check_tesseract()
+        st.text(result)
+    
+    if st.button('List Installed Packages'):
+        packages = list_installed_packages()
+        st.text_area("Installed Packages:", packages, height=300)
 
-    if image_file is not None:
-        image = load_image(image_file)
-        st.image(image, caption='Uploaded Image', use_column_width=True)
-        if st.button("Recognize Text"):
-            result_text = pytesseract.image_to_string(image, lang='eng')
-            st.write(result_text)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -2,6 +2,8 @@ import streamlit as st
 from PIL import Image
 import pytesseract
 from shutil import which
+import os
+import subprocess
 
 def check_tesseract():
     # Check if Tesseract is in the PATH

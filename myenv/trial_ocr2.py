@@ -1,10 +1,11 @@
 import streamlit as st
 from PIL import Image
 import pytesseract
+from shutil import which
 
-# Set the path to the tesseract executable
-# Uncomment the line below if you're on Windows or need to specify the path
-# pytesseract.pytesseract.tesseract_cmd = r'<full_path_to_your_tesseract_executable>'
+tesseract_path = which("tesseract")
+st.write("Tesseract path:", tesseract_path)
+pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 
 def load_image(image_file):
     return Image.open(image_file)

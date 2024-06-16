@@ -1,3 +1,3 @@
-tesseract-ocr
-tesseract-ocr-eng
+tesseract-2004
 libtesseract-dev
+tesseract-ocr-eng

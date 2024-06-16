@@ -3,9 +3,9 @@ from PIL import Image
 import pytesseract
 from shutil import which
 
-tesseract_path = which("tesseract")
+tesseract_path = which("tesseract-ocr")
 st.write("Tesseract path:", tesseract_path)
-pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
+pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
 def load_image(image_file):
     return Image.open(image_file)

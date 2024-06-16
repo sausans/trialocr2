@@ -3,7 +3,7 @@ from PIL import Image
 import pytesseract
 from shutil import which
 
-tesseract_path = which("tesseract-ocr")
+tesseract_path = which("pytesseract")
 st.write("Tesseract path:", tesseract_path)
 pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
